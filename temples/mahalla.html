@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Mahallalar Ro'yxati</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f2f5;
+            padding: 30px;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+        }
+        h2 {
+            text-align: center;
+            color: #2d3e50;
+            margin-bottom: 25px;
+        }
+        .card {
+            background-color: #eaf4ff;
+            padding: 18px 22px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: 0.3s ease;
+        }
+        .card:hover {
+            background-color: #d1eaff;
+        }
+        .mahalla-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #20468f;
+        }
+        .mahalla-context {
+            margin: 8px 0;
+            color: #444;
+        }
+        .mahalla-meta {
+            font-size: 13px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Mahallalar Ro'yxati</h2>
+
+        {% for mahalla in mahallalar %}
+            <div class="card">
+                <div class="mahalla-title">{{ mahalla.title }}</div>
+                <div class="mahalla-context">{{ mahalla.context|truncatewords:25 }}</div>
+                <div class="mahalla-meta">
+                    Tuman: {{ mahalla.tuman.title }} <br>
+                    Yaratilgan: {{ mahalla.created_at|date:"d.m.Y H:i" }}
+                </div>
+            </div>
+        {% empty %}
+            <p>Mahallalar mavjud emas.</p>
+        {% endfor %}
+    </div>
+    <a href="{% url 'home' %}" class="link-card">orqaga</a>
+</body>
+</html>

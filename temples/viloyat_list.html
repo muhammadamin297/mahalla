@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Viloyatlar Ro'yxati</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f6f8;
+            padding: 30px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        li {
+            background-color: #e9f0ff;
+            margin-bottom: 10px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        li:hover {
+            background-color: #cde0ff;
+        }
+        .viloyat-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2a4d9b;
+        }
+        .viloyat-context {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Viloyatlar Ro'yxati</h2>
+        <ul>
+            {% for v in viloyatlar %}
+                <li>
+                    <div class="viloyat-title">{{ v.title }}</div>
+                    <div class="viloyat-context">{{ v.context|truncatewords:20 }}</div>
+                </li>
+            {% empty %}
+                <li>Viloyatlar mavjud emas.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="{% url 'home' %}" class="link-card">orqaga</a>
+</body>
+</html>
